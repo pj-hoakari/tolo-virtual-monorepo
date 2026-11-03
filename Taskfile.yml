@@ -3,6 +3,23 @@
 version: "3"
 
 tasks:
+    pull:
+        desc: Pull every cloned repository and report the ones that failed.
+        silent: true
+        cmds:
+            - |
+              failed=""
+              for d in */; do
+                d=${d%/}
+                [ -e "$d/.git" ] || continue
+                echo "== $d"
+                git -C "$d" pull --ff-only || failed="$failed $d"
+              done
+              if [ -n "$failed" ]; then
+                echo "pull failed:$failed" >&2
+                exit 1
+              fi
+
     clone:all:
         desc: Clone every repository.
         deps:
