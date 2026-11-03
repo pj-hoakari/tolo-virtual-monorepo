@@ -20,14 +20,13 @@ tasks:
                 exit 1
               fi
 
-    clone:all:
-        desc: Clone every repository.
+    clone:core:
+        desc: Clone every repository except the PoCs.
         deps:
             - clone:web
             - clone:backend
             - clone:mobile
             - clone:infra
-            - clone:poc
 
     clone:web:
         desc: Clone hoakari-root and the web repositories.
@@ -272,6 +271,7 @@ tasks:
 
     _clone:
         internal: true
+        run: when_changed
         requires:
             vars: [REPO]
         status:
