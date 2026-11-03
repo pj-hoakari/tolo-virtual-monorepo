@@ -20,6 +20,24 @@ tasks:
                 exit 1
               fi
 
+    mise:
+        desc: Run mise trust and mise install in every cloned repository with a mise config and report the ones that failed.
+        silent: true
+        cmds:
+            - |
+              failed=""
+              for d in */; do
+                d=${d%/}
+                [ -e "$d/.git" ] || continue
+                [ -e "$d/mise.toml" ] || [ -e "$d/.mise.toml" ] || [ -e "$d/.tool-versions" ] || continue
+                echo "== $d"
+                (cd "$d" && mise trust && mise install) || failed="$failed $d"
+              done
+              if [ -n "$failed" ]; then
+                echo "mise failed:$failed" >&2
+                exit 1
+              fi
+
     clone:core:
         desc: Clone every repository except the PoCs.
         deps:
