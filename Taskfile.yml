@@ -1,0 +1,263 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+tasks:
+    clone:all:
+        desc: Clone every repository.
+        deps:
+            - clone:web
+            - clone:backend
+            - clone:mobile
+            - clone:infra
+            - clone:poc
+
+    clone:web:
+        desc: Clone hoakari-root and the web repositories.
+        deps:
+            - clone:hoakari-root
+            - clone:tolo-web
+            - clone:web-crowd-detection-utils
+
+    clone:backend:
+        desc: Clone hoakari-root and the backend services and libraries.
+        deps:
+            - clone:hoakari-root
+            - clone:tolo-service-gateway
+            - clone:tolo-tenant-management
+            - clone:tolo-graph-authoring
+            - clone:tolo-observation
+            - clone:tolo-operation
+            - clone:tolo-flow-control
+            - clone:tolo-edge-bridge
+            - clone:tolo-guest
+            - clone:tolo-realtime
+            - clone:tolo-idp
+            - clone:tolo-relation-stub
+            - clone:tolo-kernel-proto
+            - clone:internal-jwt-handling
+            - clone:protoc-gen-authz-go
+            - clone:jetstream-http-push
+            - clone:go-service-template
+
+    clone:mobile:
+        desc: Clone hoakari-root and the mobile app.
+        deps:
+            - clone:hoakari-root
+            - clone:tolo-staff-app
+
+    clone:infra:
+        desc: Clone hoakari-root and the integration, deployment and CI repositories.
+        deps:
+            - clone:hoakari-root
+            - clone:tolo
+            - clone:tolo-manifest
+            - clone:actions
+            - clone:renovate-config
+
+    clone:poc:
+        desc: Clone hoakari-root and the PoC and experiment repositories.
+        deps:
+            - clone:hoakari-root
+            - clone:tolo-burst-observation-poc
+            - clone:tolo-walk-calibration-poc
+            - clone:guide-map-poc
+            - clone:tolo-communication-poc
+            - clone:grid-canvas-poc
+            - clone:yolo_person_finetuning_colab
+            - clone:esp-edge-device
+
+    clone:hoakari-root:
+        desc: Clone pj-hoakari/hoakari-root.
+        cmds:
+            - task: _clone
+              vars: { REPO: hoakari-root }
+
+    clone:tolo-web:
+        desc: Clone pj-hoakari/tolo-web.
+        cmds:
+            - task: _clone
+              vars: { REPO: tolo-web }
+
+    clone:web-crowd-detection-utils:
+        desc: Clone pj-hoakari/web-crowd-detection-utils.
+        cmds:
+            - task: _clone
+              vars: { REPO: web-crowd-detection-utils }
+
+    clone:tolo-service-gateway:
+        desc: Clone pj-hoakari/tolo-service-gateway.
+        cmds:
+            - task: _clone
+              vars: { REPO: tolo-service-gateway }
+
+    clone:tolo-tenant-management:
+        desc: Clone pj-hoakari/tolo-tenant-management.
+        cmds:
+            - task: _clone
+              vars: { REPO: tolo-tenant-management }
+
+    clone:tolo-graph-authoring:
+        desc: Clone pj-hoakari/tolo-graph-authoring.
+        cmds:
+            - task: _clone
+              vars: { REPO: tolo-graph-authoring }
+
+    clone:tolo-observation:
+        desc: Clone pj-hoakari/tolo-observation.
+        cmds:
+            - task: _clone
+              vars: { REPO: tolo-observation }
+
+    clone:tolo-operation:
+        desc: Clone pj-hoakari/tolo-operation.
+        cmds:
+            - task: _clone
+              vars: { REPO: tolo-operation }
+
+    clone:tolo-flow-control:
+        desc: Clone pj-hoakari/tolo-flow-control.
+        cmds:
+            - task: _clone
+              vars: { REPO: tolo-flow-control }
+
+    clone:tolo-edge-bridge:
+        desc: Clone pj-hoakari/tolo-edge-bridge.
+        cmds:
+            - task: _clone
+              vars: { REPO: tolo-edge-bridge }
+
+    clone:tolo-guest:
+        desc: Clone pj-hoakari/tolo-guest.
+        cmds:
+            - task: _clone
+              vars: { REPO: tolo-guest }
+
+    clone:tolo-realtime:
+        desc: Clone pj-hoakari/tolo-realtime.
+        cmds:
+            - task: _clone
+              vars: { REPO: tolo-realtime }
+
+    clone:tolo-idp:
+        desc: Clone pj-hoakari/tolo-idp.
+        cmds:
+            - task: _clone
+              vars: { REPO: tolo-idp }
+
+    clone:tolo-relation-stub:
+        desc: Clone pj-hoakari/tolo-relation-stub.
+        cmds:
+            - task: _clone
+              vars: { REPO: tolo-relation-stub }
+
+    clone:tolo-kernel-proto:
+        desc: Clone pj-hoakari/tolo-kernel-proto.
+        cmds:
+            - task: _clone
+              vars: { REPO: tolo-kernel-proto }
+
+    clone:internal-jwt-handling:
+        desc: Clone pj-hoakari/internal-jwt-handling.
+        cmds:
+            - task: _clone
+              vars: { REPO: internal-jwt-handling }
+
+    clone:protoc-gen-authz-go:
+        desc: Clone pj-hoakari/protoc-gen-authz-go.
+        cmds:
+            - task: _clone
+              vars: { REPO: protoc-gen-authz-go }
+
+    clone:jetstream-http-push:
+        desc: Clone pj-hoakari/jetstream-http-push.
+        cmds:
+            - task: _clone
+              vars: { REPO: jetstream-http-push }
+
+    clone:go-service-template:
+        desc: Clone pj-hoakari/go-service-template.
+        cmds:
+            - task: _clone
+              vars: { REPO: go-service-template }
+
+    clone:tolo-staff-app:
+        desc: Clone pj-hoakari/tolo-staff-app.
+        cmds:
+            - task: _clone
+              vars: { REPO: tolo-staff-app }
+
+    clone:tolo:
+        desc: Clone pj-hoakari/tolo.
+        cmds:
+            - task: _clone
+              vars: { REPO: tolo }
+
+    clone:tolo-manifest:
+        desc: Clone pj-hoakari/tolo-manifest.
+        cmds:
+            - task: _clone
+              vars: { REPO: tolo-manifest }
+
+    clone:actions:
+        desc: Clone pj-hoakari/actions.
+        cmds:
+            - task: _clone
+              vars: { REPO: actions }
+
+    clone:renovate-config:
+        desc: Clone pj-hoakari/renovate-config.
+        cmds:
+            - task: _clone
+              vars: { REPO: renovate-config }
+
+    clone:tolo-burst-observation-poc:
+        desc: Clone pj-hoakari/tolo-burst-observation-poc.
+        cmds:
+            - task: _clone
+              vars: { REPO: tolo-burst-observation-poc }
+
+    clone:tolo-walk-calibration-poc:
+        desc: Clone pj-hoakari/tolo-walk-calibration-poc.
+        cmds:
+            - task: _clone
+              vars: { REPO: tolo-walk-calibration-poc }
+
+    clone:guide-map-poc:
+        desc: Clone pj-hoakari/guide-map-poc.
+        cmds:
+            - task: _clone
+              vars: { REPO: guide-map-poc }
+
+    clone:tolo-communication-poc:
+        desc: Clone pj-hoakari/tolo-communication-poc.
+        cmds:
+            - task: _clone
+              vars: { REPO: tolo-communication-poc }
+
+    clone:grid-canvas-poc:
+        desc: Clone pj-hoakari/grid-canvas-poc.
+        cmds:
+            - task: _clone
+              vars: { REPO: grid-canvas-poc }
+
+    clone:yolo_person_finetuning_colab:
+        desc: Clone pj-hoakari/yolo_person_finetuning_colab.
+        cmds:
+            - task: _clone
+              vars: { REPO: yolo_person_finetuning_colab }
+
+    clone:esp-edge-device:
+        desc: Clone pj-hoakari/esp-edge-device.
+        cmds:
+            - task: _clone
+              vars: { REPO: esp-edge-device }
+
+    _clone:
+        internal: true
+        requires:
+            vars: [REPO]
+        status:
+            - test -d {{.REPO}}
+        cmds:
+            - gh repo clone pj-hoakari/{{.REPO}}
